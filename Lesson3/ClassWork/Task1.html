@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Taks 1</title>
     <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
     <div class="wrap" id="wrap">
@@ -68,6 +68,25 @@
 
 
       var ListCount = 0;
+      var receiver = document.querySelector('#Receiver');
+      var submitBtn = document.querySelector('#AddToList');
+      var list = document.querySelector('#list');
+      
+      submitBtn.addEventListener('click', function() {
+        if(ListCount < 5){
+        var newList = document.createElement('li');
+        list.appendChild(newList);
+        newList.innerText = receiver.value;
+        receiver.value = '';
+        ListCount++;
+        console.log(ListCount);
+      } else {
+        submitBtn.removeEventListener('click', function() {
+          var liToRemove = document.querySelectorAll('li');
+          liToRemove.remove();
+        });
+      }
+      });
 
     </script>
   </body>

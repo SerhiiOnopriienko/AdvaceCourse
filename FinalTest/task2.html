@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Forms Task 1</title>
+  
+</head>
+<body>
+  <form id="MyValidateForm">
+    <input type="text" class="input" name='login' placeholder="Ваш логин" />
+    <input type="password" class="input" name='pas1' placeholder="Ваш пароль" />
+    <input type="password" class="input" name='pas2' placeholder="Повторите пароль" />
+    <label for="agree">
+      <span>Вы согласны с лицензионым соглашением.</span>
+      <input type="checkbox" id="agree" />
+    </label>
+    <input type="submit" id="submit" value="Отправить" disabled/>
+  </form>
+
+  <style>
+    #MyValidateForm{
+      width: 350px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #MyValidateForm input{
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      padding: 10px 20px;
+    }
+    .error{
+        border: 1px solid red;
+    }
+    .OK{
+        border: 1px solid green;
+    }
+  </style>
+<script>
+  /*
+      Завдання:
+       Зробити валідацію форми:
+       1. Логін / Пароль не може бути порожнім
+       2. те поле, яке не пройшло валідацію, підсвічувати червоним, яке пройшло - підсвічувати зеленим.
+       3. Поки користувач не згоден з угодою – кнопка відправки не активна
+  */
+
+  let form = document.getElementById('MyValidateForm')
+  let inputs = document.getElementsByClassName('input');
+  let agree = document.getElementById('agree');
+  let submit = document.getElementById('submit');
+
+  submit.addEventListener('click', function(){
+    if (form.login.value.length === 0){
+      form.login.classList.add('error');
+    } else {
+      form.login.classList.add('OK')
+    }
+  })
+
+  agree.addEventListener('click', function(){
+    if(agree.checked === true){
+    submit.removeAttribute("disabled");
+  } else {
+    submit.setAttribute("disabled", "true")
+  } return;
+  })
+</script>
+</body>
+</html>
